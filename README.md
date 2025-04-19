@@ -23,5 +23,5 @@
 ## Feladatleírás:
 - Micromouse jellegű labirintus készítése
 - Átlós haladást lehetővé tevő szakasz is legyen benne
--Labirintus feltérképezése pl szimulált távolságmérő szenzorral
+- Labirintus feltérképezése pl szimulált távolságmérő szenzorral
 - Útvonaltervezés a labirintuson való végigvezetésre saját ROS node-dal
