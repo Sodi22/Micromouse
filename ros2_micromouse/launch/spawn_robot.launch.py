@@ -95,7 +95,8 @@ def generate_launch_description():
             "/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist",
             "/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry",
             "/joint_states@sensor_msgs/msg/JointState@gz.msgs.Model",
-            "/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V"
+            # "/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V",
+            "imu@sensor_msgs/msg/Imu@gz.msgs.IMU",
         ],
         output="screen",
         parameters=[
@@ -109,6 +110,25 @@ def generate_launch_description():
         name='mogi_trajectory_server',
     )
 
+    ekf_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[
+            os.path.join(pkg_ros2_micromouse, 'config', 'ekf.yaml'),
+            {'use_sim_time': True},
+             ]
+    )
+
+    trajectory_odom_topic_node = Node(
+        package='mogi_trajectory_server',
+        executable='mogi_trajectory_server_topic_based',
+        name='mogi_trajectory_server_odom_topic',
+        parameters=[{'trajectory_topic': 'trajectory_raw'},
+                    {'odometry_topic': 'odom'}]
+    )
+
     launchDescriptionObject = LaunchDescription()
 
     launchDescriptionObject.add_action(rviz_launch_arg)
@@ -120,5 +140,7 @@ def generate_launch_description():
     launchDescriptionObject.add_action(robot_state_publisher_node)
     launchDescriptionObject.add_action(gz_bridge_node)
     launchDescriptionObject.add_action(trajectory_node)
+    launchDescriptionObject.add_action(ekf_node)
+    launchDescriptionObject.add_action(trajectory_odom_topic_node)
     
     return launchDescriptionObject
