@@ -109,6 +109,7 @@ def generate_launch_description():
         package='mogi_trajectory_server',
         executable='mogi_trajectory_server',
         name='mogi_trajectory_server',
+        parameters=[{'reference_frame_id': 'map'}]
     )
 
     ekf_node = Node(
@@ -132,11 +133,11 @@ def generate_launch_description():
 
     launchDescriptionObject = LaunchDescription()
 
-    launchDescriptionObject.add_action(rviz_launch_arg)
+    #launchDescriptionObject.add_action(rviz_launch_arg)
     launchDescriptionObject.add_action(world_arg)
     launchDescriptionObject.add_action(model_arg)
     launchDescriptionObject.add_action(world_launch)
-    launchDescriptionObject.add_action(rviz_node)
+    #launchDescriptionObject.add_action(rviz_node)
     launchDescriptionObject.add_action(spawn_urdf_node)
     launchDescriptionObject.add_action(robot_state_publisher_node)
     launchDescriptionObject.add_action(gz_bridge_node)
