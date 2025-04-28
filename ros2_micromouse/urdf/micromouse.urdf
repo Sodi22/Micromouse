@@ -19,23 +19,23 @@
   </joint>
 
   <link name='base_link'>
-    <pose>0 0 0.03 0 0 0</pose>
+    <pose>0 0 0.15 0 0 0</pose>
 
     <!-- Base -->
     <inertial>
-      <mass value="0.1"/>
+      <mass value="12.5"/>
       <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
       <inertia
-          ixx="0.000024375" ixy="0" ixz="0"
-          iyy="0.00007058" iyz="0"
-          izz="0.00007995"
+          ixx="0.07617" ixy="0" ixz="0"
+          iyy="0.22055" iyz="0"
+          izz="0.24984"
       />
     </inertial>
 
     <collision name='collision'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/> 
       <geometry>
-        <box size="0.087 0.045 0.03"/>
+        <box size="0.435 0.225 0.15"/>
       </geometry>
     </collision>
 
@@ -48,38 +48,38 @@
 
     <!-- Rear Caster Wheel -->
     <collision name='rear_caster_collision'>
-      <origin xyz="-0.03 0 -0.015" rpy=" 0 0 0"/>
+      <origin xyz="-0.15 0 -0.075" rpy=" 0 0 0"/>
       <geometry>
-        <sphere radius="0.0049"/>
+        <sphere radius="0.0249"/>
       </geometry>
     </collision>
 
     <visual name='rear_caster_visual'>
-      <origin xyz="-0.03 0 -0.015" rpy=" 0 0 0"/>
+      <origin xyz="-0.15 0 -0.075" rpy=" 0 0 0"/>
       <geometry>
-        <sphere radius="0.005"/>
+        <sphere radius="0.025"/>
       </geometry>
     </visual>
 
     <!-- Front Caster Wheel -->
     <collision name='front_caster_collision'>
-      <origin xyz="0.03 0 -0.015" rpy=" 0 0 0"/>
+      <origin xyz="0.15 0 -0.075" rpy=" 0 0 0"/>
       <geometry>
-        <sphere radius="0.0049"/>
+        <sphere radius="0.0249"/>
       </geometry>
     </collision>
 
     <visual name='front_caster_visual'>
-      <origin xyz="0.03 0 -0.015" rpy=" 0 0 0"/>
+      <origin xyz="0.15 0 -0.075" rpy=" 0 0 0"/>
       <geometry>
-        <sphere radius="0.005"/>
+        <sphere radius="0.025"/>
       </geometry>
     </visual>
   </link>
 
   <!-- Left Wheel -->
   <joint type="continuous" name="left_wheel_joint">
-    <origin xyz="0 0.0325 0" rpy="0 0 0"/>
+    <origin xyz="0 0.1625 0" rpy="0 0 0"/>
     <child link="left_wheel"/>
     <parent link="base_link"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -89,19 +89,19 @@
 
   <link name='left_wheel'>
     <inertial>
-      <mass value="0.1"/>
+      <mass value="12.5"/>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <inertia
-          ixx="0.000013333" ixy="0" ixz="0"
-          iyy="0.000013333" iyz="0"
-          izz="0.00002"
+          ixx="0.04167" ixy="0" ixz="0"
+          iyy="0.04167" iyz="0"
+          izz="0.0625"
       />
     </inertial>
 
     <collision>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/> 
       <geometry>
-        <cylinder radius=".02" length=".02"/> 
+        <cylinder radius=".1" length=".1"/> 
       </geometry>
     </collision>
 
@@ -115,7 +115,7 @@
 
   <!-- Right Wheel -->
   <joint type="continuous" name="right_wheel_joint">
-    <origin xyz="0 -0.0325 0" rpy="0 0 0"/>
+    <origin xyz="0 -0.1625 0" rpy="0 0 0"/>
     <child link="right_wheel"/>
     <parent link="base_link"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -125,19 +125,19 @@
 
   <link name='right_wheel'>
     <inertial>
-      <mass value="0.1"/>
+      <mass value="12.5"/>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
       <inertia
-          ixx="0.000013333" ixy="0" ixz="0"
-          iyy="0.000013333" iyz="0"
-          izz="0.00002"
+          ixx="0.04167" ixy="0" ixz="0"
+          iyy="0.04167" iyz="0"
+          izz="0.0625"
       />
     </inertial>
 
     <collision>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/> 
       <geometry>
-        <cylinder radius=".02" length=".02"/>
+        <cylinder radius=".1" length=".1"/>
       </geometry>
     </collision>
 
@@ -185,7 +185,7 @@
 
   <!-- Lidar -->
   <joint type="fixed" name="scan_joint">
-    <origin xyz="0.0 0 0.02" rpy="0 0 0"/>
+    <origin xyz="0.0 0 0.1" rpy="0 0 0"/>
     <child link="scan_link"/>
     <parent link="base_link"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -196,22 +196,22 @@
       <mass value="1e-4"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia
-          ixx="1.6667e-9" ixy="0" ixz="0"
-          iyy="1.6667e-9" iyz="0"
-          izz="1.6667e-9"
+          ixx="4.167e-89" ixy="0" ixz="0"
+          iyy="4.167e-8" iyz="0"
+          izz="4.167e-8"
       />
     </inertial>
     <collision name='collision'>
       <origin xyz="0 0 0" rpy="0 0 0"/> 
       <geometry>
-        <box size=".01 .01 .01"/>
+        <box size=".05 .05 .05"/>
       </geometry>
     </collision>
 
     <visual name='scan_link_visual'>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <box size=".01 .01 .01"/>
+        <box size=".05 .05 .05"/>
       </geometry>
       <material name="black"/>
     </visual>

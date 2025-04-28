@@ -19,7 +19,7 @@ def generate_launch_description():
                                     description='Absolute path to rviz config file')
     
 
-    # URDF model path within the bme_gazebo_basics package
+    # URDF model path within the ros2_micromouse package
     model_arg = DeclareLaunchArgument(
         'model', default_value='micromouse.urdf',
         description='Name of the URDF description to load'
