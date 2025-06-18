@@ -67,7 +67,7 @@ class FollowLeftWall(Node):
 
         self.lidar = 1
 
-        self.get_logger().info(f"Distance: left={left_distance}, front={front_distance}, right={right_distance}")
+        #self.get_logger().info(f"Distance: left={left_distance}, front={front_distance}, right={right_distance}")
 
     def odom_callback(self, msg: Odometry):
         position = msg.pose.pose.position
@@ -82,8 +82,8 @@ class FollowLeftWall(Node):
 
         self.odom = 1
 
-        self.get_logger().info(f"Position: x={position.x}, y={position.y}")
-        self.get_logger().info(f"Orientation: yaw={yaw}")
+        #self.get_logger().info(f"Position: x={position.x}, y={position.y}")
+        #self.get_logger().info(f"Orientation: yaw={yaw}")
 
     def turn(self):
         twist = Twist()
@@ -155,18 +155,26 @@ class FollowLeftWall(Node):
             self.target_position_x = self.current_position_x
             self.target_position_y = self.current_position_y
             self.target_position_x += 0.9
+            self.target_position_x = round(self.target_position_x / 0.9) * 0.9
+            self.get_logger().info(f"Target x={self.target_position_x}")
         elif self.direction == 1:
             self.target_position_x = self.current_position_x
             self.target_position_y = self.current_position_y
             self.target_position_y += 0.9
+            self.target_position_y = round(self.target_position_y / 0.9) * 0.9
+            self.get_logger().info(f"Target y={self.target_position_y}")
         elif self.direction == 2:
             self.target_position_x = self.current_position_x
             self.target_position_y = self.current_position_y
             self.target_position_x -= 0.9
+            self.target_position_x = round(self.target_position_x / 0.9) * 0.9
+            self.get_logger().info(f"Target x={self.target_position_x}")
         elif self.direction == 3:
             self.target_position_x = self.current_position_x
             self.target_position_y = self.current_position_y
             self.target_position_y -= 0.9
+            self.target_position_y = round(self.target_position_y / 0.9) * 0.9
+            self.get_logger().info(f"Target y={self.target_position_y}")
         twist.angular.z = 0.0
         twist.linear.x = self.forward_speed
         self.cmd_vel_publisher.publish(twist)
